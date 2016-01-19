@@ -53,15 +53,24 @@ for item in cancerlist[1:len(cancerlist)]:
  	# if len(result)==0:
 #  	 	print item[3], result
  	if result in sourcedict:
- 		sourcedict[result] = sourcedict[result] + (item[0], item[4])
+ 		sourcedict[result] = sourcedict[result] + (item[0], item[5], item[4])
  	else:
- 		sourcedict[result] = (item[0], item[4])
+ 		sourcedict[result] = (item[0], item[5], item[4])
 #  
 # 
 # 
 # 
 for thing in sourcedict:
  	if len(sourcedict[thing]) > 199:
+ 		output=open(thing+".txt", "w")
+ 		for item in sourcedict[thing]:
+ 			output.write(item+":")
+ 		output.write("-------------")
+ 		#output.write(unicode(sourcedict[thing]))
+ 		output.close()
+ 		
+ 		
+ 		
  		print thing, ",", len(sourcedict[thing])/2
 # 	
 	
@@ -93,4 +102,9 @@ print "finish"
 
 
 #what do links tell us
+#we're looking for experts, "projected expert identity"
+#onthological verbs
+#links?
+#anton, goering is not in works cited
+
 
