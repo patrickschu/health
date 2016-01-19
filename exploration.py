@@ -41,38 +41,35 @@ print "number of authors", len(authordict)
 
 
 ##sort according to source
-sourcedict=defaultdict(tuple)
+sourcedict=defaultdict(list)
 
 #this regex will allow us to extract the domain name only. it is truly un-elegant!
 linkfinder=re.compile(
 "://(.*?\.(?:com|co|net|org|org.uk|org.au|co.uk|com.au|co.nz|info|ca|me|ru|edu|nl|ie|us|gy|ch|tv|it|pl|com.sg|co.ke|com:8080|192))/")
 
-#here be a loop
+#here be a loop to fill the dictionary
 for item in cancerlist[1:len(cancerlist)]:
  	result=linkfinder.findall(item[3])[0]
  	# if len(result)==0:
 #  	 	print item[3], result
  	if result in sourcedict:
- 		sourcedict[result] = sourcedict[result] + (item[0], item[5], item[4])
+ 		sourcedict[result].append((item[0], item[5], item[4]))
  	else:
- 		sourcedict[result] = (item[0], item[5], item[4])
+ 		sourcedict[result] = [(item[0], item[5], item[4])]
 #  
 # 
 # 
-# 
+# let's look at the dictionary
+# write a text file for each venue
+# this is commented out just so we don't write the freaking thing every single time
 for thing in sourcedict:
- 	if len(sourcedict[thing]) > 199:
- 		output=open(thing+".txt", "w")
- 		for item in sourcedict[thing]:
- 			output.write(item+":")
- 		output.write("-------------")
- 		#output.write(unicode(sourcedict[thing]))
- 		output.close()
- 		
- 		
- 		
- 		print thing, ",", len(sourcedict[thing])/2
-# 	
+	print thing
+	output=open("outputfiles/"+thing+".txt", "a")
+	for x in sourcedict[thing]:
+			output.write(x[0]+" , "+x[1]+":\n"+x[2]+ "\n\n------------\n\n")
+	output.close()
+	
+
 	
 print "length sourcedict", len(sourcedict)
 # print sourcedict["www.forbes.com"]
