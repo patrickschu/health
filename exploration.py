@@ -75,7 +75,8 @@ print "length sourcedict", len(sourcedict)
 # print sourcedict["www.forbes.com"]
 #print result, item[3]
  
-
+#ontological verbs: think, believe, wonder, know
+#according to PB 2005: 166
 print "finish"
 # 	
 # 
