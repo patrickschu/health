@@ -89,7 +89,13 @@ print "finish\n---------\n\n\n"
 #Excluded files for strange formatting
 #
 #/Users/ps22344/Downloads/outputfiles_speakers/060336_earie.txt
-#/Users/ps22344/Downloads/outputfiles_speakers/060336_anwar.txt		
+#/Users/ps22344/Downloads/outputfiles_speakers/060336_anwar.txt	
+
+#what about users posting links
+
+#note issues with quoted text
+
+#some "speakers" are collections of unregistered posters
 	
 	
 
