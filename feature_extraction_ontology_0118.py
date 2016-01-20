@@ -3,8 +3,8 @@ import re
 
 print "start"
 #read in each file
-#inputfiles=os.listdir("outputfiles_speakers")
-inputfiles=["usmessageboard.com_OnePercenter.txt", "facebook.com_10206966179415036.txt", "061006_*guest.txt"]
+inputfiles=os.listdir("outputfiles_speakers")
+#inputfiles=["usmessageboard.com_OnePercenter.txt", "facebook.com_10206966179415036.txt", "061006_*guest.txt"]
 print "number of files", len(inputfiles)
 
 
@@ -32,13 +32,14 @@ def featureextracter(inputtext, search_term, fili):
 	regexstring=" "+search_term+" "
 	regexfinder=re.compile(regexstring)
 	result=regexfinder.findall(inputtext)
-	print len(result)
-	print result
 	return result
 	
 
 #set up csv file
-outputfile=open("healthoutput.csv", "a")
+filename="healthoutput_1118"
+outputfile=open(filename+".csv", "a")
+logfile=open(filename+"_log.csv", "a")
+
 
 
 #extract text and speakers for csv file
@@ -47,14 +48,14 @@ for fili in inputfiles:
 		#set up the inputfile
 		inputfile=open("outputfiles_speakers/"+fili)
 		inputtext=inputfile.read()
-		
+	
 		#get the speaker name
 		speaker=tagextracter(inputtext, "speaker", fili)
 		#extract text&count words
 		text=tagextracter(inputtext, "text", fili)
 		splittext=text.split()
 		wordcount=len(splittext)
-		
+	
 		#get the variables
 		#note that we can add e.g. third person forms
 		#or e.g. exclude negation and focus on 1st person only
@@ -62,23 +63,33 @@ for fili in inputfiles:
 		believe=featureextracter(text, "(believe|believed)", fili)
 		wonder=featureextracter(text, "(wonder|wondered)", fili)
 		know=featureextracter(text, "(know|knew|known)", fili)
-		
+	
 		#write up the csv file
-		outputfile.write(
-		speaker+","+
-		wordcount+","+
-		len(think)+","+
-		len(believe)+","+
-		len(wonder)+","+
-		len(know)+"\n"
-		)
+		outputfile.write(speaker+","+
+		str(wordcount)+","+
+		str(len(think))+
+		","+str(len(believe))+
+		","+str(len(wonder))+
+		","+str(len(know))+"\n")
+	
+		#and the log
+		logfile.write(speaker+","+
+		" ".join(think)+","+
+		" ".join(believe)+","+
+		" ".join(wonder)+","+
+		" ".join(know)+"\n")
+		
 	except: 
 		print "Alarm", fili
 
 outputfile.close()
+logfile.close()
 print "finish\n---------\n\n\n"
 # from Pennebaker 2005: ontological verbs: think, believe, wonder, know
-		
+#Excluded files for strange formatting
+#
+#/Users/ps22344/Downloads/outputfiles_speakers/060336_earie.txt
+#/Users/ps22344/Downloads/outputfiles_speakers/060336_anwar.txt		
 	
 	
 
