@@ -1,6 +1,6 @@
 import csv
 inputi=open("LWIC_and_onto_merged_0328.csv", "r")
-outputi=open("LWIC_and_onto_merged_over50_0328.csv", "w")
+outputi=open("LWIC_and_onto_merged_over50_0328_2.csv", "w")
 
 
 outputrows=[]
@@ -8,11 +8,11 @@ reader=csv.reader(inputi, dialect="excel")
 
 #get header out of the way
 header=reader.next()
-print header[2]
+print header[13]
 
-#item[2] is the wordcount
+# #item[2] is the wordcount
 for line in reader:
- 	if float(line[2]) > 49:
+ 	if float(line[13]) > 49:
  		outputrows.append(line)
  
 print "the outputfile has {} rows".format(len(outputrows))
