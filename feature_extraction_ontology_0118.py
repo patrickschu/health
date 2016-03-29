@@ -52,6 +52,7 @@ for fili in inputfiles:
 	
 		#get the speaker name
 		speaker=tagextracter(inputtext, "speaker", fili)
+		speakertext=speaker+".txt"
 		#extract text&count words
 		text=tagextracter(inputtext, "text", fili)
 		#splittext=nltk.wordpunct_tokenize(text)
@@ -70,7 +71,7 @@ for fili in inputfiles:
 		outputfloats=[float(i) for i in outputvalues]
 		outputfreqs=[i / wordcount for i in outputfloats]
 		overallfreq=sum(outputfloats)/wordcount
-		final=[speaker]+[wordcount]+outputfloats+outputfreqs+[overallfreq]
+		final=[speakertext]+[wordcount]+outputfloats+outputfreqs+[overallfreq]
 	
 		# #write up the csv file
 # 		outputfile.write(speaker+","+
