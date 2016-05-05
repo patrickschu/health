@@ -1,15 +1,12 @@
 import os, re, nltk, string, codecs, csv
-#from n
 
 print "start"
-#read in each file
 
 inputfiles=os.listdir("outputfiles_speakers")
 #inputfiles=["usmessageboard.com_OnePercenter.txt", "facebook.com_10206966179415036.txt", "061006_*guest.txt"]
 print "number of files", len(inputfiles)
 
-# tagextracter takes the inputfile and any kind of tag that 
-# encloses the text to be extracted
+# tagextracter takes the inputfile and any kind of tag 
 def tagextracter(inputtext, tag, fili):
 	regexstring="<"+tag+">(.*?)</"+tag+">"
 	regexfinder=re.compile(regexstring, re.DOTALL)
@@ -74,18 +71,18 @@ for fili in inputfiles:
 		final=[speakertext]+[wordcount]+outputfloats+outputfreqs+[overallfreq]
 	
 		# #write up the csv file
-# 		outputfile.write(speaker+","+
-# 		str(wordcount)+","+
-# 		",".join([str(i) for i in outputfloats])+","+
-# 		",".join([str(i) for i in outputfreqs])+","+
-# 		str(overallfreq)+"\n")
+		outputfile.write(speaker+","+
+		str(wordcount)+","+
+		",".join([str(i) for i in outputfloats])+","+
+		",".join([str(i) for i in outputfreqs])+","+
+		str(overallfreq)+"\n")
 		
-# 		#write up the csv file
-# 		outputfile.write(speaker+"\t"+
-# 		str(wordcount)+"\t"+
-# 		"\t".join([str(i) for i in outputfloats])+"\t"+
-# 		"\t".join([str(i) for i in outputfreqs])+"\t"+
-# 		str(overallfreq)+"\n")
+		#write up the csv file
+		outputfile.write(speaker+"\t"+
+		str(wordcount)+"\t"+
+		"\t".join([str(i) for i in outputfloats])+"\t"+
+		"\t".join([str(i) for i in outputfreqs])+"\t"+
+		str(overallfreq)+"\n")
 		
 		
 #write up the csv file
@@ -106,18 +103,7 @@ for fili in inputfiles:
 outputfile.close()
 logfile.close()
 print "finish\n---------\n\n\n"
-# from Pennebaker 2005: ontological verbs: think, believe, wonder, know
-#Excluded files for strange formatting
-#
-#/Users/ps22344/Downloads/outputfiles_speakers/060336_earie.txt
-#/Users/ps22344/Downloads/outputfiles_speakers/060336_anwar.txt	
 
-#what about users posting links
-
-#note issues with quoted text
-
-#some "speakers" are collections of unregistered posters
-	
 	
 
 
